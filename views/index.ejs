@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        body {background-color:#eee;}
+        .container-fluid {padding:50px;}
+        .container{background-color:white;padding:50px;   }
+        #title{font-family: 'Lobster', cursive;;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+		<div class="container">
+			<h2 class="text-center" id="title">Login and Signup form</h2>
+			 <p class="text-center">
+		     </p>
+ 			<hr>
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="post" onsubmit = "return signup(this)">
+						<fieldset>							
+							<p class="text-uppercase pull-center"> SIGN UP.</p>	
+                            <div class="form-group">
+								<input type="text" name="name" id="name" class="form-control input-lg" placeholder="Name">
+							</div>
+                             
+                            <div class="form-group">
+								<input type="text" name="username" id="username" class="form-control input-lg" placeholder="username">
+							</div>
+                            <div class="form-group">
+								<input type="contact" name="contact" id="contact" class="form-control input-lg" placeholder="Contact No.">
+							</div>
+							<div class="form-group">
+								<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+							</div>
+								
+							<div class="form-check">
+								<label class="form-check-label">
+								  <input type="checkbox" class="form-check-input">
+								  By Clicking register you're agree to our policy & terms
+								</label>
+							  </div>
+ 							<div>
+ 									  <input type="submit" class="btn btn-lg btn-primary   value="Register">
+ 							</div>
+						</fieldset>
+					</form>
+				</div>
+				<script>
+                    function signup(form) 
+                    {  data = {}
+                       data.name = form.name.value;
+                       data.username = form.username.value;
+                       data.password = form.password.value;
+                       data.email = form.email.value;
+                       data.contact = form.contact.value; 
+                       console.log(data);
+                       $.ajax({
+                           url : '/signup',
+                           method: 'POST' ,
+                           contentType: 'application/json',
+                           data: JSON.stringify(data),
+                           success : function(res)
+                           {
+                               alert(res);
+                           }
+                       }); 
+                        form.reset();
+                        return false;
+                    }
+                </script>
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+				
+				<div class="col-md-5">
+ 				 		<form role="form" method="POST" action="/login">
+						<fieldset>							
+							<p class="text-uppercase"> Login using your account: </p>	
+ 								
+							<div class="form-group">
+								<input type="usename" name="username" id="username" class="form-control input-lg" placeholder="username">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+							</div>
+							<div>
+								<a href="otp">forgot password </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-md" value="Sign In"> 
+							</div>
+								 
+ 						</fieldset>
+				</form>	
+				</div>
+			</div>
+		</div>
+		<p></p>
+	</div>
+</body>
+</html>

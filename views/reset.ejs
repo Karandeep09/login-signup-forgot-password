@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+</head>
+<body>
+    <div class="col-md-2">
+        
+    </div>
+    
+    <div class="col-md-5">
+              <form role="form" method="POST" onsubmit = "return func(this)">
+            <fieldset>								
+                <div class="form-group">
+                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Enter new Password">
+                </div>
+                <div>
+                    <button>Submit</button>        
+                    
+                </div>
+                     
+             </fieldset>
+    </form>	 
+    </div>  
+    <script>
+        function func(form)
+        {
+            data ={};
+            data.password = form.password.value; 
+            $.ajax({
+                url: '/reset',
+                method: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(resu)
+                {
+                    alert(resu);
+                }
+            }); 
+            form.reset();
+            return false; 
+        }
+    </script>
+</body>
+</html>
